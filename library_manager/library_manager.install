@@ -1,0 +1,59 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+function library_manager_schema() {
+  $schema['library_manager_books'] = [
+    'description' => 'The table for storing books managed by Library Manager.',
+    'fields' => [
+      'id' => [
+        'description' => 'The primary identifier for the book.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'title' => [
+        'description' => 'The title of the book.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'author' => [
+        'description' => 'The author of the book.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+    'category' => [
+        'description' => 'The category of the book.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+     'description' => [
+        'type' => 'text',
+        'not null' => FALSE,
+      ],
+      'isbn' => [
+        'type' => 'varchar',
+        'length' => 13,
+        'not null' => FALSE,
+      ],
+      'photo' => [
+        'description' => 'The file ID of the photo.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => FALSE,
+        ],
+      'checked_out' => [
+        'description' => 'Whether the book is checked out or not.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+    ],
+    'primary key' => ['id'],
+  ];
+  return $schema;
+}

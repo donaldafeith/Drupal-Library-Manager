@@ -1,0 +1,27 @@
+library_manager.books:
+  title: "Books"
+  description: "Manage the library books"
+  route_name: "library_manager.books"
+  parent: system.admin_content
+  weight: 90
+
+library_manager.members:
+  title: "Members"
+  description: "Manage library members"
+  route_name: "library_manager.members"
+  parent: system.admin_content
+  weight: 91
+
+library_manager.book_form:
+  title: "Book Form"
+  description: "Add or update books"
+  route_name: "library_manager.book_form"
+  parent: system.admin_content
+  weight: 92
+
+library_manager.public_books:
+  title: "Public Books"
+  description: "Public view of the library books"
+  route_name: "library_manager.public_books"
+  menu_name: main
+  weight: 90

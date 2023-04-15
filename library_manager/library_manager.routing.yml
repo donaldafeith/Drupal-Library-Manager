@@ -1,0 +1,56 @@
+library_manager.books:
+  path: "/admin/library_manager/books"
+  defaults:
+    _controller: '\Drupal\library_manager\Controller\LibraryController::books'
+    _title: "Library Manager: Books"
+  requirements:
+    _permission: "administer site configuration"
+
+library_manager.members:
+  path: "/admin/library_manager/members"
+  defaults:
+    _controller: '\Drupal\library_manager\Controller\LibraryController::members'
+    _title: "Members"
+  requirements:
+    _permission: "access content"
+
+library_manager.search_books:
+  path: "/library_manager/books/{search}"
+  defaults:
+    _controller: '\Drupal\library_manager\Controller\LibraryController::publicBooks'
+    _title: "Search Books"
+    search: ""
+  requirements:
+    _permission: "access content"
+
+library_manager.book:
+  path: "/library_manager/book/{id}"
+  defaults:
+    _controller: '\Drupal\library_manager\Controller\LibraryController::book'
+    _title: "Book"
+  requirements:
+    _permission: "access content"
+
+library_manager.public_books:
+  path: "/library_manager/public-books"
+  defaults:
+    _controller: 'Drupal\library_manager\Controller\LibraryController::publicBooks'
+    _title: "Public Books"
+  requirements:
+    _permission: "access content"
+
+library_manager.book_form:
+  path: "/admin/library_manager/book-form"
+  defaults:
+    _form: 'Drupal\library_manager\Form\LibraryManagerBookForm'
+    _title: "Book Form"
+  requirements:
+    _permission: "access content"
+
+library_manager.book_edit:
+  path: "/admin/library_manager/book/{book_id}/edit"
+  defaults:
+    _form: '\Drupal\library_manager\Form\LibraryManagerBookEditForm'
+    _title: "Edit Book"
+  requirements:
+    _permission: "access library manager admin"

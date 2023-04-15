@@ -1,0 +1,66 @@
+<?php
+
+use Drupal\Core\Block\BlockBase;
+
+/**
+ * Implements hook_block_info().
+ */
+function library_manager_block_info() {
+  $blocks = [];
+
+  $blocks['library_manager_books_list'] = [
+    'info' => t('Library Manager: Books List'),
+    'cache' => DRUPAL_NO_CACHE,
+  ];
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function library_manager_block_view($delta = '') {
+  $block = [];
+
+  switch ($delta) {
+    case 'library_manager_books_list':
+      $block['subject'] = t('Library Manager: Books List');
+      $block['content'] = library_manager_books_list_block_content();
+      break;
+  }
+
+  return $block;
+}
+
+/**
+ * Generates the content for the books list block.
+ */
+function library_manager_books_list_block_content() {
+  // Fetch book data from the database.
+  $database = \Drupal::database();
+  $query = $database->select('library_manager_books', 'lb')
+    ->fields('lb', ['title', 'author', 'category']);
+  $results = $query->execute()->fetchAll();
+
+  // Group books by category.
+  $books_by_category = [];
+  foreach ($results as $result) {
+    $books_by_category[$result->category][] = [
+      'title' => $result->title,
+      'author' => $result->author,
+    ];
+  }
+
+  // Generate the content.
+  $content = '';
+  foreach ($books_by_category as $category => $books) {
+    $content .= '<h3>' . $category . '</h3><ul>';
+    foreach ($books as $book) {
+      $content .= '<li>' . $book['title'] . ' by ' . $book['author'] . '</li>';
+    }
+    $content .= '</ul>';
+  }
+
+  return ['#markup' => $content];
+}
+

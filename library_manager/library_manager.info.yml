@@ -1,0 +1,8 @@
+name: Library Manager
+type: module
+description: A simple library management module for Drupal.
+core_version_requirement: ^8 || ^9
+package: Custom
+dependencies:
+  - drupal:node
+  - drupal:user
